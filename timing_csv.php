@@ -11,7 +11,10 @@ $server_id = isset($opts['s']) ? intval($opts['s']) : 1;
 $delimiter = isset($opts['d']) ? $opts['d'] : '#';
 while (1) {
 	$line = trim(fgets(STDIN));
-	if (substr($line, 0, 8) == 'database' || $line == '') {
+	if (empty($line)) {
+	    exit();
+	}
+	if (substr($line, 0, 8) == 'database') {
 		continue;
 	}
 	$msg = parse_content($line, $server_id, $delimiter);
