@@ -19,10 +19,10 @@ function check_mkdir_file($file_path, $file_name) {
 	}
 }
 
-function parse_content($content, $server_id = 1) {
+function parse_content($content, $server_id = 1, $delimiter = '#') {
     $content_arr = explode(',', $content);
     $key = trim($content_arr[2], '"');
-    $key_arr = get_key($key);
+    $key_arr = get_key($key, $delimiter);
     $new_arr['db'] = $content_arr[0];
     $new_arr['type'] = get_type($content_arr[1]);
     $new_arr['key'] = $key;
