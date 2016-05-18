@@ -5,7 +5,7 @@ Analyse the rdb file of redis, so show you the keys  statistics
     分析redis的rdb文件，将分析结果（键名，类型，空间大小，元素数量等）导入到mysql,通过分析结果查找瓶颈问题。
 
 ##依赖环境：
-1.    安装[redis-rdb-tools](https://github.com/happyjuzi/Redis-Analyst/wiki/tutorial)
+1.  安装[redis-rdb-tools](https://github.com/happyjuzi/Redis-Analyst/wiki/tutorial)
 
 2.  表结构
      
@@ -33,6 +33,8 @@ Analyse the rdb file of redis, so show you the keys  statistics
         KEY `prefix` (`key_prefix`)
     
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+3. 完善 config.php中的mysql信息,
 
 ##步骤：
 
