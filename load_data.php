@@ -15,8 +15,8 @@ if (!isset($opts['f']) || isset($opts['h'])) {
 		\n";
 	exit;
 }
-require_once 'func.inc.php';
-$config = require_once 'config.php';
+require_once __DIR__ . '/func.inc.php';
+$config = require_once __DIR__ . '/config.php';
 $mysql_table = 'juzi_redis_' . date('Ymd');
 if (isset($opts['d'])) {
 	$mysql_table = 'juzi_redis_' . date('Ymd', strtotime($opts['d']));

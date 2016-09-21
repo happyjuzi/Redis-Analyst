@@ -18,7 +18,7 @@ if ((!isset($opts['f'])) || isset($opts['h'])) {
          * -f output filename
          * -i input file path
          * -s server id  (服务器id)
-         ** eg: php create_csv.php -l path/to/dump.txt -s 1 -f
+         ** eg: php create_csv.php -i path/to/dump.txt -s 1 -f
 		\n";
 	exit;
 }
