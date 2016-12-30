@@ -31,6 +31,7 @@ if ($conn) {
 	$exists_table_sql = "create table if not exists `$mysql_table` like `juzi_redis`";
 	mysql_query($exists_table_sql);
 	//导入数据
+	//LOAD DATA LOCAL INFILE 'path/to/file.csv' INTO TABLE `juzi_redis` CHARACTER SET utf8 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' (`db`,`type`,`key`,`key_prefix`,`key_suffix`,`size_in_bytes`,`encoding`,`num_elements`,`len_largest_element`,`server_id`);
 	$sql = "LOAD DATA LOCAL INFILE '" . $file_name . "' INTO TABLE `" . $mysql_table . "` CHARACTER SET utf8 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' (`db`,`type`,`key`,`key_prefix`,`key_suffix`,`size_in_bytes`,`encoding`,`num_elements`,`len_largest_element`,`server_id`)";
 	if (mysql_query($sql)) {
 		log_result("加载" . $file_name . "文件成功。");
