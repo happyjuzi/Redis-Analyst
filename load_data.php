@@ -23,23 +23,26 @@ if (isset($opts['d'])) {
 }
 $file_path = __DIR__ . '/csv/'; //csv文件目录
 $file_name = $file_path . $opts['f']; //csv文件名
-$conn = mysql_connect($config['DB_HOST'] . ':' . $config['DB_PORT'], $config['DB_USER'], $config['DB_PWD']);
+//$conn = mysql_connect($config['DB_HOST'] . ':' . $config['DB_PORT'], $config['DB_USER'], $config['DB_PWD']);
+$conn = mysqli_connect($config['DB_HOST'] . ':' . $config['DB_PORT'], $config['DB_USER'], $config['DB_PWD'], $config['DB_NAME']);
 if ($conn) {
 	//选择数据库
-	mysql_select_db($config['DB_NAME'], $conn);
+	//mysql_select_db($config['DB_NAME'], $conn);
 	//是否存在表
 	$exists_table_sql = "create table if not exists `$mysql_table` like `juzi_redis`";
-	mysql_query($exists_table_sql);
+	//mysql_query($exists_table_sql);
+	mysqli_query($conn, $exists_table_sql);
 	//导入数据
 	//LOAD DATA LOCAL INFILE 'path/to/file.csv' INTO TABLE `juzi_redis` CHARACTER SET utf8 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' (`db`,`type`,`key`,`key_prefix`,`key_suffix`,`size_in_bytes`,`encoding`,`num_elements`,`len_largest_element`,`server_id`);
 	$sql = "LOAD DATA LOCAL INFILE '" . $file_name . "' INTO TABLE `" . $mysql_table . "` CHARACTER SET utf8 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' (`db`,`type`,`key`,`key_prefix`,`key_suffix`,`size_in_bytes`,`encoding`,`num_elements`,`len_largest_element`,`server_id`)";
-	if (mysql_query($sql)) {
+	//if (mysql_query($sql)) {
+	if (mysqli_query($conn, $sql)) {	
 		log_result("加载" . $file_name . "文件成功。");
 	} else {
 		log_result("加载" . $file_name . "失败了。");
 		echo $sql;
 	}
-	mysql_close($conn);
+	mysqli_close($conn);
 } else {
 	echo 'Mysql could not connection.' . "\n";
 }
